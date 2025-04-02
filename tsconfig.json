@@ -8,17 +8,19 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
+    "strict": true,          // Enable strict type checking
+    "noImplicitAny": true,   // Disallow 'any' type, which will show warnings when you don't specify types
+    "noUnusedLocals": true,  // Warn about unused variables
+    "noUnusedParameters": true, // Warn about unused function parameters
+    "noFallthroughCasesInSwitch": true, // Ensure all switch cases are handled
+    "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "noImplicitAny": true,
     "jsx": "react-jsx"
   },
   "include": [

@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
 import "./styles.css";
 
-const ToDoList = () => {
+type ToDoListProps = {
+  test?: string
+}
+
+const ToDoList = ({ test }: ToDoListProps ) => {
   const [tasks, setTasks] = useState<string[]>(["Eat breakfast", "Take a shower"])
   const [newTask, setNewTask] = useState<string>("")
 
@@ -36,12 +40,11 @@ const ToDoList = () => {
   }
   return (
     <div className='to-do-list'>
-        <h1>To-Do-List</h1>
+        <h1>To-Do-List{test ? `:${test}` : null} </h1>
         <div>
             <input type='text' placeholder='Enter a task...' value={newTask} onChange={handleInputChange}></input>
             <button className='add-button' onClick={addTask}>Add</button>
         </div>
-
         <ol>
           {tasks.map((task: string, index: number) => {
               return <li key={index}>
