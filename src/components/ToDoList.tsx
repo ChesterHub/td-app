@@ -8,9 +8,13 @@ type ToDoListProps = {
 const ToDoList = ({ test }: ToDoListProps ) => {
   const [tasks, setTasks] = useState<string[]>(["Eat breakfast", "Take a shower"])
   const [newTask, setNewTask] = useState<string>("")
+  const [filterSearchTerm, setFilterSearchTerm] = useState<string>("")
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setNewTask(e.target.value)
+  }
+  const handleFilterInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setFilterSearchTerm(e.target.value)
   }
 
   const addTask = (): void => {
@@ -38,15 +42,18 @@ const ToDoList = ({ test }: ToDoListProps ) => {
       setTasks(updatedTasks)
     }
   }
+
+  const filteredTasks = tasks.filter((task) => task.toLowerCase().includes(filterSearchTerm.toLowerCase()))
   return (
     <div className='to-do-list'>
         <h1>To-Do-List{test ? `:${test}` : null} </h1>
         <div>
             <input type='text' placeholder='Enter a task...' value={newTask} onChange={handleInputChange}></input>
             <button className='add-button' onClick={addTask}>Add</button>
+            <input type='text' placeholder='Filter a task...' value={filterSearchTerm} onChange={handleFilterInputChange}></input>
         </div>
         <ol>
-          {tasks.map((task: string, index: number) => {
+          {filteredTasks.map((task: string, index: number) => {
               return <li key={index}>
                   <span className='text'>{task}</span>
                   <button 
