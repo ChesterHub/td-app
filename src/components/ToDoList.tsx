@@ -21,7 +21,7 @@ type ToDoListProps = {
     return debounce
  }
 
-const ToDoList = ({ test }: ToDoListProps ) => {
+const ToDoList: React.FC<ToDoListProps> = ({ test }) => {
   const [tasks, setTasks] = useState<string[]>(["Eat breakfast", "Take a shower"])
   const [newTask, setNewTask] = useState<string>("")
   const [filterInput, setFilterInput] = useState<string>("")
@@ -33,7 +33,7 @@ const ToDoList = ({ test }: ToDoListProps ) => {
     setFilterInput(e.target.value)
   }
   
-  const addTask = (): void => {
+  const addTask = (_: React.MouseEvent<HTMLButtonElement>): void => {
     setTasks((prevTasks) => [...prevTasks, newTask]);
     setNewTask("")
   }
